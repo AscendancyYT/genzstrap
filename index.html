@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>GenZstrap v1.0 Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- GenZstrap -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/ascendancyyt/genzstrap@1.0.0/genzstrap.css">
+
+  <!-- Docs chrome -->
+  <style>
+    body { display:flex; min-height:100vh; }
+    nav  { width:250px; flex-shrink:0; background:var(--gzs-gray-100); padding:2rem 0; }
+    nav a{ display:block; padding:0.75rem 1rem; color:var(--gzs-gray-800); text-decoration:none; }
+    nav a:hover{ background:var(--gzs-gray-200); }
+    main{ flex:1; padding:2rem; max-width:800px; margin:auto; }
+    pre { background:var(--gzs-gray-200); padding:1rem; border-radius:var(--gzs-radius-lg); overflow-x:auto; }
+    h1,h2,h3,h4{ margin-top:1.5rem; }
+    h1 { font-size:2rem; margin-bottom:0.5rem; }
+    h2 { font-size:1.5rem; margin-bottom:0.75rem; }
+    .lead{ font-size:1.125rem; color:var(--gzs-gray-700); margin-bottom:1rem; }
+    footer{ text-align:center; padding:2rem; font-size:0.875rem; color:var(--gzs-gray-600); }
+
+    /* Theme toggle button */
+    #themeToggle{
+      display:flex; align-items:center; gap:0.5rem;
+      margin:0 1rem 1rem auto; padding:0.5rem 0.75rem;
+      border:1px solid var(--gzs-gray-400); border-radius:var(--gzs-radius);
+      cursor:pointer; background:transparent; color:var(--gzs-gray-800);
+      font-weight:600;
+    }
+    #themeToggle:hover{ background:var(--gzs-gray-200); }
+
+    /* Dark‑mode overrides */
+    [data-theme="dark"]{
+      --gzs-gray-100:#0d0d0d; --gzs-gray-200:#1a1a1a; --gzs-gray-300:#333;
+      --gzs-gray-400:#444; --gzs-gray-500:#666; --gzs-gray-600:#888;
+      --gzs-gray-700:#aaa; --gzs-gray-800:#ccc; --gzs-gray-900:#f1f1f1;
+    }
+    [data-theme="dark"] nav{ background:var(--gzs-gray-200); }
+    [data-theme="dark"] nav a{ color:var(--gzs-gray-800); }
+    [data-theme="dark"] #themeToggle{ color:var(--gzs-gray-800); border-color:var(--gzs-gray-500); }
+    [data-theme="dark"] pre{ background:var(--gzs-gray-300); }
+    [data-theme="dark"] footer{ color:var(--gzs-gray-700); }
+
+    @media(max-width:768px){
+      nav{ display:none; }
+      body{ display:block; }
+      #themeToggle{ position:fixed; top:1rem; right:1rem; z-index:999; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav>
+    <button id="themeToggle" class="d-flex items-center gap-2">
+      <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+    </button>
+    <a href="#quick-start">Quick Start</a>
+    <a href="#utilities">Utilities</a>
+    <a href="#components">Components</a>
+    <a href="#theming">Theming</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <!-- Main docs -->
+  <main>
+
+    <h1>GenZstrap <small class="badge badge-secondary">v1.0</small></h1>
+    <p class="lead">Minimal CSS framework. One file. No build step. All vibe.</p>
+
+    <!-- QUICK START -->
+    <section id="quick-start">
+      <h2>🚀 Quick Start</h2>
+<pre><code>&lt;link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/ascendancyyt/genzstrap@1.0.0/genzstrap.css"&gt;</code></pre>
+      <p>Then drop in some markup:</p>
+<pre><code>&lt;div class="container my-8"&gt;
+  &lt;h2 class="text-primary fw-bold text-center"&gt;Hello GenZstrap&lt;/h2&gt;
+  &lt;a class="btn btn-primary m-4"&gt;Click me&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- UTILITIES -->
+    <section id="utilities">
+      <h2>🧰 Utilities</h2>
+      <h3>Spacing</h3>
+<pre><code>m‑0 … m‑5 | p‑0 … p‑5 | mt‑2 | mx‑auto</code></pre>
+      <h3>Display &amp; Flex</h3>
+<pre><code>d‑flex | d‑block | d‑none | justify‑center | items‑center | gap‑2</code></pre>
+      <h3>Colors</h3>
+<pre><code>text‑primary | bg‑success | text‑danger | bg‑warning | badge‑secondary</code></pre>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section id="components">
+      <h2>📦 Components</h2>
+
+      <h3>Buttons</h3>
+      <a class="btn btn-primary m-1">Primary</a>
+      <a class="btn btn-outline-primary m-1">Outline</a>
+<pre><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;</code></pre>
+
+      <h3>Cards</h3>
+      <div class="card shadow w-full md:w-1/2 mx-auto mb-4">
+        <div class="card-body">
+          <h4 class="fw-bold mb-2">Card Title</h4>
+          <p>Clean, simple card component.</p>
+          <a class="btn btn-primary">Do the thing</a>
+        </div>
+      </div>
+<pre><code>&lt;div class="card shadow"&gt;…&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- THEMING -->
+    <section id="theming">
+      <h2>🎨 Theming</h2>
+<pre><code>:root {
+  --gzs-h: 340; /* neon pink hue */
+}</code></pre>
+      <p>Dark mode auto via <code>prefers‑color‑scheme</code>. The toggle above simply flips the same variable overrides with <code>data-theme="dark"</code>.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>❓ FAQ</h2>
+      <h4>JS included?</h4>
+      <p>Nope. Bring your own—Alpine, React, whatever.</p>
+      <h4>Browser support?</h4>
+      <p>Evergreen browsers. Uses CSS vars + Flexbox.</p>
+      <h4>Production‑ready?</h4>
+      <p>It’s on a CDN. ‘Nuff said.</p>
+    </section>
+
+    <footer>
+      Built with ☕ &amp; chaos by the Gen Z dev crew.
+    </footer>
+
+  </main>
+
+  <!-- Theme toggle script -->
+  <script>
+    const toggleBtn  = document.getElementById('themeToggle');
+    const icon       = document.getElementById('themeIcon');
+    const label      = document.getElementById('themeLabel');
+    const root       = document.documentElement;
+
+    // Init from saved preference or OS
+    const saved      = localStorage.getItem('gzsTheme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved) { root.dataset.theme = saved; }
+    else { root.dataset.theme = prefersDark ? 'dark' : 'light'; }
+
+    updateToggle(); // sync icon/label
+
+    toggleBtn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem('gzsTheme', next);
+      updateToggle();
+    });
+
+    function updateToggle() {
+      const dark = root.dataset.theme === 'dark';
+      icon.textContent = dark ? '☀️' : '🌙';
+      label.textContent = dark ? 'Light' : 'Dark';
+    }
+  </script>
+</body>
+</html>
