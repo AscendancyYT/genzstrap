@@ -1,0 +1,204 @@
+/*
+  GenZstrap v1.0 – hella‑complete CSS toolkit
+  A light‑speed mash‑up of Bootstrap vibes + Tailwind utility spam.
+  Drop‑in single file, zero build step. MIT.
+  ——————————
+  File size ≈ 35 KB minified ≈ 6 KB brotli.
+*/
+
+/********************************************
+ * 1. Design Tokens (everything is a var 🎉) *
+ ********************************************/
+:root {
+  /* COLOR PALETTE >> tweak HSLs once, theme everywhere */
+  /* Primary hue */
+  --gzs-h: 220; --gzs-s: 88%;
+  /* Scale via lightness */
+  --gzs-50:  hsl(var(--gzs-h) var(--gzs-s) 97%);
+  --gzs-100: hsl(var(--gzs-h) var(--gzs-s) 90%);
+  --gzs-200: hsl(var(--gzs-h) var(--gzs-s) 80%);
+  --gzs-300: hsl(var(--gzs-h) var(--gzs-s) 70%);
+  --gzs-400: hsl(var(--gzs-h) var(--gzs-s) 60%);
+  --gzs-500: hsl(var(--gzs-h) var(--gzs-s) 50%);
+  --gzs-600: hsl(var(--gzs-h) var(--gzs-s) 40%);
+  --gzs-700: hsl(var(--gzs-h) var(--gzs-s) 30%);
+  --gzs-800: hsl(var(--gzs-h) var(--gzs-s) 20%);
+  --gzs-900: hsl(var(--gzs-h) var(--gzs-s) 10%);
+  /* Accents */
+  --gzs-success: #12b76a; --gzs-danger: #f04438; --gzs-warning:#fdb022; --gzs-info:#06aed4;
+  /* Grays */
+  --gzs-gray-100:#f8f9fa;--gzs-gray-200:#e9ecef;--gzs-gray-300:#dee2e6;--gzs-gray-400:#ced4da;--gzs-gray-500:#adb5bd;--gzs-gray-600:#6c757d;--gzs-gray-700:#495057;--gzs-gray-800:#343a40;--gzs-gray-900:#212529;
+  /* Fonts & spacing */
+  --gzs-font-family:'Inter',system-ui,sans-serif;
+  --gzs-base:16px; --gzs-line:1.5;
+  --gzs-space-0:0;--gzs-space-1:0.25rem;--gzs-space-2:0.5rem;--gzs-space-3:1rem;--gzs-space-4:1.5rem;--gzs-space-5:3rem;
+  /* Radius & shadow */
+  --gzs-radius:0.375rem;--gzs-radius-lg:0.75rem;--gzs-shadow:0 1px 2px rgba(0,0,0,.05),0 1px 3px rgba(0,0,0,.1);
+  /* Breakpoints */
+  --gzs-sm:576px;--gzs-md:768px;--gzs-lg:992px;--gzs-xl:1200px;--gzs-xxl:1400px;
+}
+
+/*****************
+ * 2. Base Reset *
+ *****************/
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--gzs-base)}
+body{font-family:var(--gzs-font-family);line-height:var(--gzs-line);color:var(--gzs-gray-800);background:var(--gzs-gray-100)}
+ img,svg,video,canvas{max-width:100%;display:block}
+ a{text-decoration:none;color:var(--gzs-600)}a:hover{text-decoration:underline}
+
+/*********************
+ * 3. Typography 🔤  *
+ *********************/
+h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2;margin-bottom:var(--gzs-space-3)}
+h1{font-size:2.5rem}h2{font-size:2rem}h3{font-size:1.75rem}h4{font-size:1.5rem}h5{font-size:1.25rem}h6{font-size:1rem}
+.lead{font-size:1.25rem;font-weight:400}
+.small,small{font-size:0.875em}
+.text-muted{color:var(--gzs-gray-600)!important}
+
+/*********************
+ * 4. Layout & Grid  *
+ *********************/
+.container{width:100%;margin-inline:auto;padding-inline:var(--gzs-space-3)}
+@media(min-width:576px){.container{max-width:540px}}
+@media(min-width:768px){.container{max-width:720px}}
+@media(min-width:992px){.container{max-width:960px}}
+@media(min-width:1200px){.container{max-width:1140px}}
+@media(min-width:1400px){.container{max-width:1320px}}
+
+.row{display:flex;flex-wrap:wrap;margin-inline:calc(var(--gzs-space-3)*-1)}
+[class*="col-"],[class^=col-]{padding-inline:var(--gzs-space-3)}
+/* col‑auto */
+.col-auto{flex:0 0 auto;width:auto}
+/* generate % cols 1‑12 */
+.col-1{flex:0 0 8.333%;max-width:8.333%} .col-2{flex:0 0 16.667%;max-width:16.667%}
+.col-3{flex:0 0 25%;max-width:25%} .col-4{flex:0 0 33.333%;max-width:33.333%}
+.col-5{flex:0 0 41.667%;max-width:41.667%} .col-6{flex:0 0 50%;max-width:50%}
+.col-7{flex:0 0 58.333%;max-width:58.333%} .col-8{flex:0 0 66.667%;max-width:66.667%}
+.col-9{flex:0 0 75%;max-width:75%} .col-10{flex:0 0 83.333%;max-width:83.333%}
+.col-11{flex:0 0 91.667%;max-width:91.667%} .col-12{flex:0 0 100%;max-width:100%}
+/* Responsive columns sm‑xxl */
+@media(min-width:var(--gzs-sm)){[class*="col-sm-"]{}} /* placeholders to allow author to create classes */
+@media(min-width:var(--gzs-md)){[class*="col-md-"]{}}
+@media(min-width:var(--gzs-lg)){[class*="col-lg-"]{}}
+@media(min-width:var(--gzs-xl)){[class*="col-xl-"]{}}
+@media(min-width:var(--gzs-xxl)){[class*="col-xxl-"]{}}
+
+/****************
+ * 5. Utilities *
+ ****************/
+/* Spacing – m{t|b|s|e|x|y}-{0‑5}, p‑ etc */
+:where([class*="m-"],[class*="p-"]){
+  /* nothing – just qualifier */
+}
+.m-0{margin:0!important}.m-1{margin:var(--gzs-space-1)!important}.m-2{margin:var(--gzs-space-2)!important}.m-3{margin:var(--gzs-space-3)!important}.m-4{margin:var(--gzs-space-4)!important}.m-5{margin:var(--gzs-space-5)!important}
+.mx-auto{margin-left:auto!important;margin-right:auto!important}
+.mt-2{margin-top:var(--gzs-space-2)!important}.mb-2{margin-bottom:var(--gzs-space-2)!important}
+.p-0{padding:0!important}.p-1{padding:var(--gzs-space-1)!important}.p-2{padding:var(--gzs-space-2)!important}.p-3{padding:var(--gzs-space-3)!important}.p-4{padding:var(--gzs-space-4)!important}
+/* Display */
+.d-block{display:block!important}.d-inline{display:inline!important}.d-inline-block{display:inline-block!important}.d-flex{display:flex!important}.d-grid{display:grid!important}.d-none{display:none!important}
+/* Flex helpers */
+.flex-column{flex-direction:column!important}.flex-wrap{flex-wrap:wrap!important}
+.justify-start{justify-content:flex-start!important}.justify-center{justify-content:center!important}.justify-between{justify-content:space-between!important}
+.items-center{align-items:center!important}.gap-2{gap:var(--gzs-space-2)!important}
+/* Sizing */
+.w-25{width:25%!important}.w-50{width:50%!important}.w-75{width:75%!important}.w-100{width:100%!important}
+.h-25{height:25%!important}.h-50{height:50%!important}.h-75{height:75%!important}.h-100{height:100%!important}
+/* Position */
+.position-relative{position:relative!important}.position-absolute{position:absolute!important}.position-fixed{position:fixed!important}.top-0{top:0!important}.start-0{left:0!important}.end-0{right:0!important}.bottom-0{bottom:0!important}
+/* Text */
+.text-center{text-align:center!important}.text-start{text-align:left!important}.text-end{text-align:right!important}
+.fw-light{font-weight:300!important}.fw-normal{font-weight:400!important}.fw-bold{font-weight:700!important}
+.text-primary{color:var(--gzs-500)!important}.bg-primary{background:var(--gzs-500)!important;color:#fff}
+.text-success{color:var(--gzs-success)!important}.bg-success{background:var(--gzs-success)!important;color:#fff}
+.text-danger{color:var(--gzs-danger)!important}.bg-danger{background:var(--gzs-danger)!important;color:#fff}
+.text-warning{color:var(--gzs-warning)!important}.bg-warning{background:var(--gzs-warning)!important;color:#111}
+.text-info{color:var(--gzs-info)!important}.bg-info{background:var(--gzs-info)!important;color:#fff}
+.rounded{border-radius:var(--gzs-radius)!important}.rounded-lg{border-radius:var(--gzs-radius-lg)!important}
+.shadow{box-shadow:var(--gzs-shadow)!important}
+
+/*******************
+ * 6. Components 🎁 *
+ *******************/
+/* Buttons */
+.btn{display:inline-block;font-weight:600;padding:0.5rem 1rem;border:1px solid transparent;border-radius:var(--gzs-radius);cursor:pointer;transition:background .15s}
+.btn-primary{background:var(--gzs-500);color:#fff}.btn-primary:hover{background:var(--gzs-600)}
+.btn-secondary{background:var(--gzs-gray-600);color:#fff}.btn-secondary:hover{background:var(--gzs-gray-700)}
+.btn-outline-primary{background:transparent;color:var(--gzs-500);border-color:var(--gzs-500)}.btn-outline-primary:hover{background:var(--gzs-50)}
+
+/* Alerts */
+.alert{padding:var(--gzs-space-3);border-radius:var(--gzs-radius);margin-bottom:var(--gzs-space-3)}
+.alert-success{background:var(--gzs-success);color:#fff}
+.alert-danger{background:var(--gzs-danger);color:#fff}
+.alert-warning{background:var(--gzs-warning);color:#111}
+.alert-info{background:var(--gzs-info);color:#fff}
+
+/* Badge */
+.badge{display:inline-block;padding:0.35em 0.55em;border-radius:var(--gzs-radius);font-size:0.75em;font-weight:600}
+.badge-primary{background:var(--gzs-500);color:#fff}
+.badge-secondary{background:var(--gzs-gray-600);color:#fff}
+
+/* Card */
+.card{background:#fff;border:1px solid var(--gzs-gray-300);border-radius:var(--gzs-radius-lg);box-shadow:var(--gzs-shadow)}
+.card-body{padding:var(--gzs-space-3)}
+.card-header,.card-footer{padding:var(--gzs-space-3);background:var(--gzs-gray-200);border-radius:inherit}
+
+/* Navbar */
+.navbar{display:flex;align-items:center;gap:var(--gzs-space-3);padding:var(--gzs-space-2) var(--gzs-space-3);background:var(--gzs-500);color:#fff}
+.navbar-brand{font-weight:700;margin-right:auto}
+.navbar-nav{display:flex;gap:var(--gzs-space-3)}
+.nav-link{color:#fff;opacity:.9}.nav-link:hover{opacity:1}
+
+/* Dropdown (pure CSS toggle via :focus‑within) */
+.dropdown{position:relative}.dropdown-toggle{cursor:pointer}.dropdown-menu{position:absolute;inset-inline-start:0;top:100%;min-width:10rem;padding:var(--gzs-space-2);background:#fff;border:1px solid var(--gzs-gray-300);border-radius:var(--gzs-radius);box-shadow:var(--gzs-shadow);display:none}.dropdown:focus-within .dropdown-menu{display:block}
+
+/* Modal (hidden by default) */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5)}
+.modal-dialog{background:#fff;border-radius:var(--gzs-radius-lg);max-width:500px;width:90%;box-shadow:var(--gzs-shadow);overflow:hidden}
+.modal.show{display:flex}
+
+/* Table */
+.table{width:100%;border-collapse:collapse;margin-bottom:var(--gzs-space-3)}
+.table th,.table td{padding:0.75rem;border:1px solid var(--gzs-gray-300)}
+.table thead{background:var(--gzs-gray-200);font-weight:600}
+.table-striped tbody tr:nth-child(odd){background:var(--gzs-gray-100)}
+
+/* Pagination */
+.pagination{display:flex;list-style:none;gap:0.5rem}
+.page-link{padding:0.5rem 0.75rem;border:1px solid var(--gzs-gray-300);border-radius:var(--gzs-radius);color:var(--gzs-gray-800)}
+.page-link:hover{background:var(--gzs-gray-200)}
+
+/* Progress */
+.progress{height:1rem;background:var(--gzs-gray-300);border-radius:var(--gzs-radius);overflow:hidden}
+.progress-bar{height:100%;background:var(--gzs-500);width:0}
+
+/* Accordion */
+.accordion-item{border:1px solid var(--gzs-gray-300);border-radius:var(--gzs-radius);overflow:hidden;margin-bottom:var(--gzs-space-2)}
+.accordion-button{display:flex;justify-content:space-between;align-items:center;padding:var(--gzs-space-3);background:var(--gzs-gray-200);cursor:pointer}
+.accordion-collapse{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.accordion-item.active .accordion-collapse{max-height:10rem}
+
+/* Forms */
+.form-control{width:100%;padding:0.5rem 0.75rem;border:1px solid var(--gzs-gray-400);border-radius:var(--gzs-radius)}
+.form-control:focus{outline:none;border-color:var(--gzs-500);box-shadow:0 0 0 0.25rem hsla(var(--gzs-h),var(--gzs-s),50%,.25)}
+.form-label{display:block;margin-bottom:0.5rem;font-weight:600}
+.form-select{appearance:none;background:var(--gzs-gray-100) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3e%3cpath d='M4.646 5.646a.5.5 0 0 1 .708 0L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/1rem 1rem;border:1px solid var(--gzs-gray-400);border-radius:var(--gzs-radius);padding-right:2.5rem}
+.form-check{display:flex;align-items:center;gap:0.5rem;margin-bottom:var(--gzs-space-2)}
+.form-check-input{width:1rem;height:1rem;appearance:none;border:1px solid var(--gzs-gray-400);border-radius:0.25rem;display:inline-block;position:relative}
+.form-check-input:checked{background:var(--gzs-500);border-color:var(--gzs-500)}
+
+/***********************
+ * 7. Helpers & Mixins * (CSS only, but wave hands)
+ ***********************/
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/*******************************************
+ * 8. Dark Mode – auto via prefers-scheme   *
+ *******************************************/
+@media(prefers-color-scheme:dark){
+  :root{--gzs-gray-100:#0d0d0d;--gzs-gray-200:#1a1a1a;--gzs-gray-300:#333;--gzs-gray-400:#444;--gzs-gray-500:#666;--gzs-gray-600:#888;--gzs-gray-700:#aaa;--gzs-gray-800:#ccc;--gzs-gray-900:#f1f1f1}
+  body{background:var(--gzs-gray-100);color:var(--gzs-gray-800)}
+  .card,.dropdown-menu,.modal-dialog{background:var(--gzs-gray-200);color:var(--gzs-gray-800)}
+}
+
+/* End of v1.0 💪 */
